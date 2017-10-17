@@ -3,7 +3,7 @@ import { Route, Switch, Link } from "react-router-dom";
 import store from "../store";
 import SingleCampus from "./SingleCampus";
 import { dispatchGetCampuses } from "../action-creators/campuses";
-////import AddCampus from './AddCampus';
+import AddCampus from './AddCampus';
 
 export default class campuses extends Component {
   constructor() {
@@ -39,10 +39,16 @@ export default class campuses extends Component {
                 </li>
                 {/* <Route path={`/campuses/${campus.id}`} render={() => (
                                     <SingleCampus singleCampus={campus.id}/>)} /> */}
+
+                
               </div>
             );
           })}
         </ul>
+
+        <div> <h2> Add campus </h2>
+                  <AddCampus/>
+                  </div>
       </div>
     );
   }

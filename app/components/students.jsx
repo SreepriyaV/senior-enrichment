@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { dispatchGetStudents } from '../action-creators/students';
+import AddStudent from './AddStudent';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -43,8 +44,8 @@ onSubmit(event){
     
     return (
       <div className="container story-container">
-        <ul className="list-inline large-font">
-          
+        {/* <ul className="list-inline large-font">
+          <h1> Students </h1>
           <li>
             <select
              onSubmit={this.onSubmit}
@@ -56,8 +57,29 @@ onSubmit(event){
             }
             </select>
           </li>
+        </ul> */}
+
+           <h1> Students </h1>
+        <ul>
+          { students.map(student => {
+            return (
+              <div className="row" key={student.id}>
+                <li>
+                  {student.name}
+                  {/* <Link to={`/campuses/${campus.id}`}></Link> */}
+                </li>
+                {/* <Route path={`/campuses/${campus.id}`} render={() => (
+                                    <SingleCampus singleCampus={campus.id}/>)} /> */}
+
+                
+              </div>
+            );
+          })}
         </ul>
        
+        <div> <h2> Add Student </h2>
+                  <AddStudent/>
+                  </div>
       </div>
     );
 

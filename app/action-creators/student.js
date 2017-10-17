@@ -4,9 +4,6 @@ export const getStudent=(student)=>{
     return {type: 'GETSTUDENT', student}
 }
 
-export const addStudent=(student)=>{
-    return {type: 'ADDSTUDENT', student}
-}
 
 export const updateStudent=(student)=>{
     return {type: 'UPDATESTUDENT', student}
@@ -27,13 +24,7 @@ export const dispatchGetStudent=(studentId)=>{
 
 
 
-export const dispatchAddStudent=(student)=>{
-    return function thunk(dispatch)
-    {
-        axios.post("api/students/",student)
-        .then(res=>dispatch(addStudent(res.data)));
-    }
-}
+
 
 export const dispatchUpdateStudent=(studentId,student)=>{
     return function thunk(dispatch)

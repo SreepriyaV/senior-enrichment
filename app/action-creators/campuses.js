@@ -4,6 +4,9 @@ export const getCampuses=(campuses)=>{
     return {type: 'GETCAMPUSES', campuses}
 }
 
+export const addCampus=(campus)=>{
+    return {type: 'ADDCAMPUS', campus}
+}
 
 
 
@@ -17,6 +20,15 @@ export const dispatchGetCampuses=()=>{
     }
 }
 
+export const dispatchAddCampus=(campus)=>{
+    return function thunk(dispatch)
+    {
+        axios.post("api/campuses/",campus)
+        .then(res=>{
+            console.log(res.data);
+            dispatch(addCampus(res.data))});
+    }
+}
 
 
 

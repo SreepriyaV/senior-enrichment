@@ -18,12 +18,14 @@ export default class SingleCampus extends Component {
 
     componentDidMount(){
 
-            console.log(this.props.match.params);
-       // store.dispatch(dispatchGetCampus(this.props.match.params));
+            //console.log(this.props.match.params.campusId);
+            const campusId=Number(this.props.match.params.campusId);
+            console.log(campusId);
+        store.dispatch(dispatchGetCampus(campusId));
         
 
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
-            console.log(this.state.campus);
+           // console.log(this.state.campus);
        
     }
 

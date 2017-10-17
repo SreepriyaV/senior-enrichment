@@ -4,7 +4,7 @@ import home from "./home.jsx"
 import campuses from "./campuses.jsx"
 import campus from "./campuses.jsx"
 import students from "./students.jsx"
- import SingleCampus from "./SingleCampus.js"
+ import SingleCampus from "./SingleCampus.jsx"
 
 
 export default class Root extends Component {
@@ -19,9 +19,10 @@ export default class Root extends Component {
           <div className="col-xs-10">
             <Switch>
               <Route exact path={"/"} component={home} />
+               <Route  path={"/campuses/:campusId"} component={SingleCampus}/> 
               <Route   path={"/campuses"} component={campuses} />
                 <Route   path={"/students"} component={students} />
-                 <Route  path={"/campuses/:campusId"} component={SingleCampus}/> 
+                
            
              
             </Switch>

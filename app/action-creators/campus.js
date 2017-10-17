@@ -5,10 +5,6 @@ export const getCampus=(campus)=>{
 }
 
 
-export const addCampus=(campus)=>{
-    return {type: 'ADDCAMPUS', campus}
-}
-
 export const updateCampus=(campus)=>{
     return {type: 'UPDATECAMPUS', campus}
 }
@@ -22,20 +18,14 @@ export const dispatchGetCampus=(campusId)=>{
     {
         axios.get(`api/campuses/${campusId}`)
         .then(res=>{
-            console.log("res",res.data);
+            console.log("res.data=>",res.data);
             dispatch(getCampus(res.data))
         }
     );
     }
 }
 
-export const dispatchAddCampus=(campus)=>{
-    return function thunk(dispatch)
-    {
-        axios.post("api/campuses/",campus)
-        .then(res=>dispatch(addCampus(res.data)));
-    }
-}
+
 
 export const dispatchUpdateCampus=(campusId,campus)=>{
     return function thunk(dispatch)

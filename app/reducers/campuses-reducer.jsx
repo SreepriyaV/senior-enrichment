@@ -1,4 +1,5 @@
 const GETCAMPUSES= "GETCAMPUSES";
+const ADDCAMPUS= "ADDCAMPUS"
 
 export default  function reducer(campuses=[], action){
  
@@ -6,7 +7,9 @@ export default  function reducer(campuses=[], action){
     {
         case GETCAMPUSES:
         return action.campuses;
-      
+        case ADDCAMPUS:
+        return [...campuses,action.campus]
+
         default:
         return campuses;
     }
