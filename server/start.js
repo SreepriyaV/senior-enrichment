@@ -4,6 +4,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const {resolve} = require('path')
 
+const pkg = require('../package.json')
+
 const app = express()
 
 if (process.env.NODE_ENV !== 'production') {
@@ -40,6 +42,9 @@ if (module === require.main) {
   db.sync()
   .then(() => {
     console.log('db synced')
-    app.listen(PORT, () => console.log(`server listening on port ${PORT}`))
+    app.listen(PORT, () => {console.log(`server listening on port ${PORT}`)
+   console.log(`--- Started HTTP Server for ${pkg.name} ---`)      
+     // console.log(`Listening on ${JSON.stringify(server.address())}`)
+    }) 
   });
 }
