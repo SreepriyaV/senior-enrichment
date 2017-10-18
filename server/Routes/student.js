@@ -14,6 +14,12 @@ router.get("/:studentId", (req, res, next) => {
     .catch(next);
 });
 
+router.get("/campus/:campusId", (req, res, next) => {
+  Student.findAll({where: {campusId:req.params.campusId}})
+    .then(students => res.json(students))
+    .catch(next);
+});
+
 router.post("/", (req, res, next) => {
   Student.create(req.body)
     .then(student => res.json(student))

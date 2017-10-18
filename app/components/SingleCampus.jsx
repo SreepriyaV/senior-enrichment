@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { dispatchGetCampus } from "../action-creators/campus";
+import {dispatchGetCampusStudents} from "../action-creators/students"
 
 
 
@@ -15,20 +16,40 @@ class SingleCampus extends Component {
   }
 
   componentDidMount() {
+      this.props.studentsData(Number(this.props.match.params.campusId));
     this.props.campusData(Number(this.props.match.params.campusId));
-    console.log("num",Number(this.props.match.params.campusId))
+  
+    //console.log("num",Number(this.props.match.params.campusId))
   }
 
 
 
   render() {
     const { campus } = this.props;
-    console.log("propcampus",this.props.campus);
+
+   console.log("propstudents",this.props.students);
 
     return (
       <div >
+        <div>
+          <h1><b>Campus:</b></h1>
         <h1><b>{campus.name}</b></h1>
         <img src={campus.imageURL} alt="Campus" height="200" width="200"/>
+        </div>
+         <div className="students-group">
+              <h1>
+                <b>Students</b>
+              </h1>
+             
+                {this.props.students.map(student => {
+                  return (
+                    <li key={student.id} >
+                      {student.name}
+                    </li>
+                  );
+                })}
+            
+            </div>
 
       </div>
     );
@@ -38,13 +59,18 @@ class SingleCampus extends Component {
 /* -----------------    CONTAINER     ------------------ */
 
 const mapProps = state => {
-  return { campus: state.campus };
+  return { campus: state.campus,
+  students: state.students };
 };
 
 const mapDispatch = dispatch => ({
   
   campusData:(campusId)=>{
     dispatch(dispatchGetCampus(campusId))
+  },
+
+  studentsData:(campusId)=>{
+    dispatch(dispatchGetCampusStudents(campusId))
   }
 });
 

@@ -15,7 +15,7 @@ export const dispatchGetCampus=(campusId)=>{
     {
         axios.get(`/api/campuses/${campusId}`)
         .then(res=>{
-            console.log("res.data=>",res.data);
+            
             dispatch(getCampus(res.data))
         }
     );

@@ -4,6 +4,10 @@ export const getStudents=(students)=>{
     return {type: 'GETSTUDENTS', students}
 }
 
+export const getCampusStudents=(students)=>{
+    return {type: 'GETCAMPUSSTUDENTS', students}
+}
+
 export const addStudent=(student)=>{
     return {type: 'ADDSTUDENT', student}
 }
@@ -20,6 +24,14 @@ export const dispatchGetStudents=()=>{
     {
         axios.get("api/students/")
         .then(res=>dispatch(getStudents(res.data)));
+    }
+}
+
+export const dispatchGetCampusStudents=(campusId)=>{
+    return function thunk(dispatch)
+    {
+        axios.get(`/api/students/campus/${campusId}`)
+        .then(res=>dispatch(getCampusStudents(res.data)));
     }
 }
 

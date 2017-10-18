@@ -6,7 +6,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { dispatchAddStudent } from "../action-creators/students";
 import store from "../store";
-
 import { dispatchGetCampuses } from "../action-creators/campuses";
 
 /* -----------------    COMPONENT     ------------------ */
@@ -15,24 +14,24 @@ class AddStudent extends React.Component {
   constructor(props) {
     super(props);
 
-   // this.state = store.getState();
+    this.state = {
+      id: ""
+    };
 
+    this.onSelectSubmit = this.onSelectSubmit.bind(this);
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
   }
 
-//  componentDidMount() {
-//     store.dispatch(dispatchGetCampuses());
+  componentDidMount() {
+    this.props.getCampuses(dispatchGetCampuses());
+  }
 
-//     this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
-//   }
-
-//   componentWillUnmount() {
-//     this.unsubscribe();
-//   }
+  onSelectSubmit(event) {
+    this.setState({ id: event.target.value });
+  }
 
   render() {
-
-    console.log("cam",this.props.campuses);
+    //console.log("cam", this.props.campuses);
     return (
       <div className="signin-container">
         <div className="buffer local">
@@ -54,19 +53,23 @@ class AddStudent extends React.Component {
                 className="form-control"
                 required
               />
-
-               {/* <div className="form-group">
-              <ul>
-                {this.state.campuses.map(campus => {
-                  <div className="row" key={campus.id}>
-                    <li>{campus.name}</li>
-                  </div>
-                })}
-              </ul>
-            </div> */}
-
             </div>
-           
+
+            <div className="form-group">
+              <h1>
+                <b>Campuses</b>
+              </h1>
+              <select onChange={this.onSelectSubmit}>
+                {this.props.campuses.map(campus => {
+                  return (
+                    <option key={campus.id} value={campus.id}>
+                      {campus.name}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+
             <button type="submit" className="btn btn-block btn-primary">
               SUBMIT
             </button>
@@ -77,27 +80,34 @@ class AddStudent extends React.Component {
   }
 
   onLoginSubmit(event) {
-    //const { message } = this.props;
     event.preventDefault();
 
-    this.props.postStudent(event.target.name.value, event.target.email.value);
-    console.log(event.target.name.value);
+    this.props.postStudent(
+      event.target.name.value,
+      event.target.email.value,
+      this.state.id
+    );
+    console.log(event.target.email.value);
   }
 }
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = null;
+const mapProps = state => {
+  return { campuses: state.campuses };
+};
 
 const mapDispatch = dispatch => {
   return {
-    postStudent: (name, email) => {
-      const post = { name: name, imageURL: email };
+    postStudent: (name, email, campusId) => {
+      const post = { name: name, email: email, campusId: campusId };
       dispatch(dispatchAddStudent(post));
     },
 
-    getCampus: dispatch(dispatchGetCampuses())
+    getCampuses: () => {
+      dispatch(dispatchGetCampuses());
+    }
   };
 };
 
-export default connect(mapState, mapDispatch)(AddStudent);
+export default connect(mapProps, mapDispatch)(AddStudent);
