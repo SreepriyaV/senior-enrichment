@@ -1,40 +1,47 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { dispatchGetStudent} from "../action-creators/student";
-import { dispatchGetCampus } from "../action-creators/campus";
-
-
+import { dispatchGetStudent } from "../action-creators/student";
+// import { dispatchGetCampus } from "../action-creators/campus";
 
 /* -----------------    COMPONENT     ------------------ */
 
 class SingleStudent extends Component {
   constructor(props) {
     super(props);
-
- 
   }
 
   componentDidMount() {
     this.props.studentData(Number(this.props.match.params.studentId));
-    
-    console.log("num",Number(this.props.match.params.studentId))
   }
 
-
-
   render() {
-    this.props.campusData(this.props.student.campusId)
-    
     const { student } = this.props;
-    console.log("propStudent",this.props.student);
-    console.log("cam",this.props.campus)
+    console.log("Student", this.props.student);
+    if (this.props.student.campus)
+      console.log("campus", this.props.student.campus.name);
     return (
-      <div >
-        <h1><b>{student.name}</b></h1>
-        <h2>{student.email}</h2>
-        
+      <div>
+        <h1><b><font color="red">Student Details</font></b></h1>
+        <h1>
+          <b>Name: </b>{student.name}
+        </h1>
+        <h2><b>Email:</b> {student.email}</h2>
 
+        {this.props.student.campus && (
+          <h2>
+            <b>Campus Name: </b>{student.campus.name}
+          </h2>
+        )}
+
+        {this.props.student.campus && (
+          <img
+            src={student.campus.imageURL}
+            alt="Campus"
+            height="200"
+            width="200"
+          />
+        )}
       </div>
     );
   }
@@ -43,18 +50,19 @@ class SingleStudent extends Component {
 /* -----------------    CONTAINER     ------------------ */
 
 const mapProps = state => {
-  return { student: state.student,
-  campus: state.campus};
+  return {
+    student: state.student
+    // campus: state.campus
+  };
 };
 
 const mapDispatch = dispatch => ({
-  
-  studentData:(studentId)=>{
-    dispatch(dispatchGetStudent(studentId))
-  },
-   campusData:(campusId)=>{
-    dispatch(dispatchGetCampus(campusId))
+  studentData: studentId => {
+    dispatch(dispatchGetStudent(studentId));
   }
+  // campusData: campusId => {
+  //   dispatch(dispatchGetCampus(campusId));
+  // }
 });
 
 export default connect(mapProps, mapDispatch)(SingleStudent);

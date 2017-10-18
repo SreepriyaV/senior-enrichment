@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const {Student}  =require("../../db/models");
+const {Campus}  =require("../../db/models");
 
 
 router.get("/", (req, res, next) => {
@@ -9,7 +10,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:studentId", (req, res, next) => {
-  Student.findById(req.params.studentId)
+  Student.findById(req.params.studentId,{ include: [ Campus ] })
     .then(student => res.json(student))
     .catch(next);
 });
