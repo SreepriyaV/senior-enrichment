@@ -112,3 +112,5 @@ Once you've recorded your screencast, please *upload it to YouTube as an unliste
 `curl -H "Content-Type: application/json" -X POST -d '{"name":"FullStack","imageURL":"https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/1163/s300/course-report-fullstack-academy-600-600.png"}' http://localhost:1337/api/campuses/`
 
 `curl -H "Content-Type: application/json" -X POST -d '{"name":"April","email":"april@gmail.com"}' http://localhost:1337/api/students/`
+
+`curl -H "Content-Type: application/json" -X DELETE -d '{"id":"5"}' http://localhost:1337/api/campuses/5`

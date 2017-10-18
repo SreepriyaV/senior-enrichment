@@ -9,15 +9,13 @@ export const updateStudent=(student)=>{
     return {type: 'UPDATESTUDENT', student}
 }
 
-export const deleteStudent=(students)=>{
-    return {type: 'DELETESTUDENT', students}
-}
+
 
 
 export const dispatchGetStudent=(studentId)=>{
     return function thunk(dispatch)
     {
-        axios.get(`api/students/${studentId}`)
+        axios.get(`/api/students/${studentId}`)
         .then(res=>dispatch(getStudent(res.data)));
     }
 }
@@ -34,11 +32,3 @@ export const dispatchUpdateStudent=(studentId,student)=>{
     }
 }
 
-export const dispatchDeleteStudent=(studentId)=>{
-
-return function thunk(dispatch)
-    {
-        axios.delete(`api/students/${studentId}`)
-        .then(res=>dispatch(deleteStudent(res.data)));
-    }
-}

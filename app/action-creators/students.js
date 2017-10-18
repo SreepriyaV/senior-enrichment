@@ -9,6 +9,9 @@ export const addStudent=(student)=>{
 }
 
 
+export const deleteStudent=(students)=>{
+    return {type: 'DELETESTUDENT', students}
+}
 
 //--------Thunk--------
 
@@ -25,5 +28,14 @@ export const dispatchAddStudent=(student)=>{
     {
         axios.post("api/students/",student)
         .then(res=>dispatch(addStudent(res.data)));
+    }
+}
+
+export const dispatchDeleteStudent=(studentId)=>{
+
+return function thunk(dispatch)
+    {
+        axios.delete(`api/students/${studentId}`)
+        .then(res=>dispatch(deleteStudent(res.data)));
     }
 }

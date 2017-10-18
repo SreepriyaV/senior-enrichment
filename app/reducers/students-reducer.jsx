@@ -1,5 +1,6 @@
 const GETSTUDENTS= "GETSTUDENTS";
 const ADDSTUDENT= "ADDSTUDENT";
+const DELETESTUDENT= "DELETESTUDENT"
 
 export default function reducer(students=[], action){
  
@@ -10,6 +11,9 @@ export default function reducer(students=[], action){
 
          case ADDSTUDENT:
        return  [...students,action.student]
+
+        case DELETESTUDENT:
+        return action.students ;
         
     
         default:

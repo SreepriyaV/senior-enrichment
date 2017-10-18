@@ -1,50 +1,62 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { dispatchGetCampus } from '../action-creators/campus';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import store from '../store';
-
-export default class SingleCampus extends Component {   
-    
-    constructor(props){
-        super(props);
-
-        this.state = store.getState();
-
-        // this.onClick = this.onClick.bind(this);
-    }
-
-    //COMPONENTS
-
-    componentDidMount(){
-
-            //console.log(this.props.match.params.campusId);
-            const campusId=Number(this.props.match.params.campusId);
-            console.log(campusId);
-        store.dispatch(dispatchGetCampus(campusId));
-        
-
-        this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
-           // console.log(this.state.campus);
-       
-    }
-
-     componentWillUnmount(){
-        this.unsubscribe();
-    }
-   
+import { dispatchGetCampus } from "../action-creators/campus";
 
 
 
-    //RENDER
+/* -----------------    COMPONENT     ------------------ */
 
-    render()
-    {
-       // console.log(typeof this.props.singleCampus)
-        
-        return(<h1>hey</h1>);
-    }
+class SingleCampus extends Component {
+  constructor(props) {
+    super(props);
 
-    
+ 
+  }
+
+  componentDidMount() {
+    this.props.campusData(Number(this.props.match.params.campusId));
+    console.log("num",Number(this.props.match.params.campusId))
+  }
+
+
+
+  render() {
+    const { campus } = this.props;
+    console.log("propcampus",this.props.campus);
+
+    return (
+      <div >
+        <h1><b>{campus.name}</b></h1>
+        <img src={campus.imageURL} alt="Campus" height="200" width="200"/>
+
+      </div>
+    );
+  }
 }
+
+/* -----------------    CONTAINER     ------------------ */
+
+const mapProps = state => {
+  return { campus: state.campus };
+};
+
+const mapDispatch = dispatch => ({
+  
+  campusData:(campusId)=>{
+    dispatch(dispatchGetCampus(campusId))
+  }
+});
+
+export default connect(mapProps, mapDispatch)(SingleCampus);
+
+
+
+
+
+
+
+
+
+
 

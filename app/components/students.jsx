@@ -1,114 +1,83 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Route, Switch, Link } from "react-router-dom";
 
-import { dispatchGetStudents } from '../action-creators/students';
-import AddStudent from './AddStudent';
+import { dispatchGetStudents, dispatchDeleteStudent} from "../action-creators/students";
+import AddStudent from "./AddStudent";
 
 /* -----------------    COMPONENT     ------------------ */
 
- class students extends Component {
+class students extends Component {
   constructor(props) {
     super(props);
 
-  
     this.onHandleChange = this.onHandleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchInitialData();
-
   }
 
-onHandleChange(event){
+  onHandleChange(event) {
+    console.log(event.target.value);
+  }
 
-  console.log(event.target.value);
-
-
-}
-
-
-onSubmit(event){
-  event.preventDefault();
-}
-
-    
-  
+  onSubmit(event) {
+    event.preventDefault();
+  }
 
   render() {
-   
-    const {students} = this.props;
-  
-   
-    
+    const { students } = this.props;
+
     return (
       <div className="container story-container">
-        {/* <ul className="list-inline large-font">
-          <h1> Students </h1>
-          <li>
-            <select
-             onSubmit={this.onSubmit}
-              onChange={this.onHandleChange}>
-            {
-              students.map(student => (
-                <option key={student.id} value={student.name}>{student.name}</option>
-              ))
-            }
-            </select>
-          </li>
-        </ul> */}
-
-           <h1> Students </h1>
+        <h1> <b>Students</b> </h1>
         <ul>
-          { students.map(student => {
+          {students.map(student => {
             return (
               <div className="row" key={student.id}>
                 <li>
-                  {student.name}
-                  {/* <Link to={`/campuses/${campus.id}`}></Link> */}
-                </li>
-                {/* <Route path={`/campuses/${campus.id}`} render={() => (
-                                    <SingleCampus singleCampus={campus.id}/>)} /> */}
+                <Link to={`/students/${student.id}`}>  {student.name} </Link>
 
-                
+                   <button
+                    onClick={() =>
+                      this.props.deleteStudent(student.id)}
+                  >
+                    X
+                  </button>
+
+                </li>
+              
               </div>
             );
           })}
         </ul>
-       
-        <div> <h2> Add Student </h2>
-                  <AddStudent/>
-                  </div>
+
+        <div>
+        
+          <h2> <b>Add Student</b> </h2>
+          <AddStudent />
+        </div>
       </div>
     );
-
-
- 
   }
-
-
 }
 
 /* -----------------    CONTAINER     ------------------ */
 
-
-const mapProps = (state)=>{
-  return {students: state.students}
+const mapProps = state => {
+  return { students: state.students };
 };
 
 const mapDispatch = dispatch => ({
   fetchInitialData: () => {
-  
     dispatch(dispatchGetStudents());
-  
+  },
+
+  deleteStudent:(studentId)=>{
+    dispatch(dispatchDeleteStudent(studentId))
   }
 });
 
-
- export default connect(mapProps, mapDispatch)(students);
-
-
-
-
-
+export default connect(mapProps, mapDispatch)(students);

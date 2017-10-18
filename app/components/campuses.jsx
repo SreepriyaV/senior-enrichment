@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import { Route, Switch, Link } from "react-router-dom";
 import store from "../store";
 import SingleCampus from "./SingleCampus";
-import { dispatchGetCampuses } from "../action-creators/campuses";
-import AddCampus from './AddCampus';
+import {
+  dispatchGetCampuses,
+  dispatchDeleteCampus
+} from "../action-creators/campuses";
+import AddCampus from "./AddCampus";
 
 export default class campuses extends Component {
   constructor() {
@@ -28,27 +31,35 @@ export default class campuses extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <h1> campuses </h1>
+        <h1>
+          <b> Campuses</b>{" "}
+        </h1>
         <ul>
           {this.state.campuses.map(campus => {
             return (
               <div className="row" key={campus.id}>
                 <li>
-                  
                   <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
+                  <button
+                    onClick={() =>
+                      store.dispatch(dispatchDeleteCampus(campus.id))}
+                  >
+                    X
+                  </button>
                 </li>
                 {/* <Route path={`/campuses/${campus.id}`} render={() => (
                                     <SingleCampus singleCampus={campus.id}/>)} /> */}
-
-                
               </div>
             );
           })}
         </ul>
 
-        <div> <h2> Add campus </h2>
-                  <AddCampus/>
-                  </div>
+        <div>
+          <h2>
+            <b> Add campus </b>
+          </h2>
+          <AddCampus />
+        </div>
       </div>
     );
   }

@@ -8,7 +8,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:campusId", (req, res, next) => {
-  console.log("in campus router");
+  
   Campus.findById(req.params.campusId)
     .then(campus => res.json(campus))
     .catch(next);
@@ -31,7 +31,7 @@ router.put("/:campusId", (req, res, next) => {
 
 router.delete("/:campusId",(req,res,next)=>{
     Campus.destroy({where:{id: req.params.campusId}})
-    .then(()=>campus.findAll())
+    .then(()=>Campus.findAll())
     .then(campuses=>res.json(campuses))
     .catch(next);
 })

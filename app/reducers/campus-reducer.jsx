@@ -3,7 +3,7 @@
 const GETCAMPUS= "GETCAMPUS"
 
 const UPDATECAMPUS= "UPDATECAMPUS"
-const DELETECAMPUS= "DELETECAMPUS"
+
 
 
 export default  function reducer(campus={}, action){
@@ -16,8 +16,7 @@ export default  function reducer(campus={}, action){
         
         case UPDATECAMPUS:
         return   action.campus;
-        case DELETECAMPUS:
-        return action.campuses;
+     
         default:
         return campus;
     }

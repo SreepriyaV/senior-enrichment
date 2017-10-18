@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:studentId", (req, res, next) => {
-  Student.findById(req.params.studentsId)
+  Student.findById(req.params.studentId)
     .then(student => res.json(student))
     .catch(next);
 });
@@ -31,7 +31,7 @@ router.put("/:studentId", (req, res, next) => {
 
 router.delete("/:studentId",(req,res,next)=>{
     Student.destroy({where:{id: req.params.studentId}})
-    .then(()=>student.findAll())
+    .then(()=>Student.findAll())
     .then((students)=>res.json(students))
     .catch(next);
 })

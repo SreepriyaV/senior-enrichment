@@ -3,7 +3,7 @@
 const GETSTUDENT= "GETSTUDENT"
 
 const UPDATESTUDENT= "UPDATESTUDENT"
-const DELETESTUDENT= "DELETESTUDENT"
+
 
 
 
@@ -17,8 +17,7 @@ export default function reducer(student={}, action){
        
         case UPDATESTUDENT:
         return  action.student;
-        case DELETESTUDENT:
-        return action.students ;
+       
         default:
         return student;
     }

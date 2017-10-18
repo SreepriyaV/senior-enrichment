@@ -9,6 +9,13 @@ export const addCampus=(campus)=>{
 }
 
 
+export const deleteCampus=(campuses)=>{
+    return {type: 'DELETECAMPUS', campuses}
+}
+
+
+
+
 
 //--------Thunk--------
 
@@ -30,7 +37,14 @@ export const dispatchAddCampus=(campus)=>{
     }
 }
 
+export const dispatchDeleteCampus=(campusId)=>{
 
+return function thunk(dispatch)
+    {
+        axios.delete(`/api/campuses/${campusId}`)
+        .then(res=>dispatch(deleteCampus(res.data)));
+    }
+}
 
 
 
