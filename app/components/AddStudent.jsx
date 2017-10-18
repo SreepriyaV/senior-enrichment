@@ -87,7 +87,7 @@ class AddStudent extends React.Component {
       event.target.email.value,
       this.state.id
     );
-    console.log(event.target.email.value);
+    console.log(event.target.name.value,event.target.email.value,this.state.id);
   }
 }
 
