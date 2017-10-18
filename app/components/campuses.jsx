@@ -30,9 +30,10 @@ export default class campuses extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container is-fluid">
+        <div className="notification">
         <h1>
-          <b> Campuses</b>{" "}
+          <b><strong> Campuses</strong></b>
         </h1>
         <ul>
           {this.state.campuses.map(campus => {
@@ -59,6 +60,7 @@ export default class campuses extends Component {
             <b> Add campus </b>
           </h2>
           <AddCampus />
+        </div>
         </div>
       </div>
     );

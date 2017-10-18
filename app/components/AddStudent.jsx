@@ -36,43 +36,57 @@ class AddStudent extends React.Component {
       <div className="signin-container">
         <div className="buffer local">
           <form onSubmit={this.onLoginSubmit}>
-            <div className="form-group">
-              <label>name</label>
-              <input
-                name="name"
-                type="name"
-                className="form-control"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>email</label>
-              <input
-                name="email"
-                type="email"
-                className="form-control"
-                required
-              />
+            <div className="field">
+              <label className="label">Name</label>
+              <div className="control">
+                <input
+                  name="name"
+                  type="name"
+                  className="form-control"
+                  required
+                />
+              </div>
             </div>
 
-            <div className="form-group">
-              <h1>
-                <b>Campuses</b>
-              </h1>
-              <select onChange={this.onSelectSubmit}>
-                {this.props.campuses.map(campus => {
-                  return (
-                    <option key={campus.id} value={campus.id}>
-                      {campus.name}
-                    </option>
-                  );
-                })}
-              </select>
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control has-icons-left has-icons-right">
+                <input
+                  className="input is-danger"
+                  placeholder="Email input"
+                  name="email"
+                  type="email"
+                  className="form-control"
+                  required
+                />
+               
+              </div>
             </div>
 
-            <button type="submit" className="btn btn-block btn-primary">
-              SUBMIT
+            <div className="field">
+              <label className="label">Campuses</label>
+              <div className="control">
+                <div className="select">
+                  <select onChange={this.onSelectSubmit}>
+                    {this.props.campuses.map(campus => {
+                      return (
+                        <option key={campus.id} value={campus.id}>
+                          {campus.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              </div>
+            </div>
+              
+              <div className="field is-grouped">
+              <div className="control">
+            <button className="button is-link">
+              Submit
             </button>
+            </div>
+            </div>
           </form>
         </div>
       </div>
@@ -87,7 +101,11 @@ class AddStudent extends React.Component {
       event.target.email.value,
       this.state.id
     );
-    console.log(event.target.name.value,event.target.email.value,this.state.id);
+    console.log(
+      event.target.name.value,
+      event.target.email.value,
+      this.state.id
+    );
   }
 }
 
