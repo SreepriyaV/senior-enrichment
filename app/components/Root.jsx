@@ -18,19 +18,23 @@ export default class Root extends Component {
           <div className="col-xs-10">
             <Switch>
               <Route exact path={"/"} component={home} />
-                 
-              
-              <Route  path={"/campuses/students/:studentId/edit"} component={editStudent}/>
 
-              <Route path={"/campuses/:campusId/edit"} component={editCampus}/>
-              
-        
+              <Route
+                path={"/campuses/students/:studentId/edit"}
+                component={editStudent}
+              />
+
+              <Route path={"/campuses/:campusId/edit"} component={editCampus} />
+
               <Route path={"/campuses/:campusId"} component={SingleCampus} />
-              
-              <Route path={"/campuses"} component={campuses} /> 
-               {/*deletion of each campus and adding a campus (AddCampus Component) is happening in the campuses component */}
-                    
-                 <Route path={"/students/:studentId/edit"} component={editStudent}/>
+
+              <Route path={"/campuses"} component={campuses} />
+              {/*deletion of each campus and adding a campus (AddCampus Component) is happening in the campuses component */}
+
+              <Route
+                path={"/students/:studentId/edit"}
+                component={editStudent}
+              />
               <Route path={"/students/:studentId"} component={SingleStudent} />
               <Route path={"/students"} component={students} />
               {/*deletion of each Student and adding a student (AddStudent Component) is happening in the students component */}

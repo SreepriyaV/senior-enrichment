@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Route, Switch, Link } from "react-router-dom";
 import { dispatchGetStudent } from "../action-creators/student";
 
-
 /* -----------------    COMPONENT     ------------------ */
 
 class SingleStudent extends Component {
@@ -22,17 +21,30 @@ class SingleStudent extends Component {
       console.log("campus", this.props.student.campus.name);
     return (
       <div>
-        <h1><b><font color="red">Student Details</font></b></h1>
-        <Link to={`/students/${student.id}/edit`}><h3>Edit</h3></Link>
         <h1>
-          <b>Name: </b>{student.name}
+          <b>
+            <font color="red">Student Details</font>
+          </b>
         </h1>
-        <h2><b>Email:</b> {student.email}</h2>
+        <Link to={`/students/${student.id}/edit`}>
+          <h3>Edit</h3>
+        </Link>
+        <h1>
+          <b>Name: </b>
+          {student.name}
+        </h1>
+        <h2>
+          <b>Email:</b> {student.email}
+        </h2>
 
         {this.props.student.campus && (
-       <Link to={`/campuses/${this.props.student.campus.id}`}>   <h2>
-            <b>Campus Name: </b>{student.campus.name}
-          </h2></Link>
+          <Link to={`/campuses/${this.props.student.campus.id}`}>
+            {" "}
+            <h2>
+              <b>Campus Name: </b>
+              {student.campus.name}
+            </h2>
+          </Link>
         )}
 
         {this.props.student.campus && (
@@ -44,13 +56,22 @@ class SingleStudent extends Component {
           />
         )}
 
-        <div >
-            <Link to={"/students"}  > <ul> <font color="brown">students</font> </ul> </Link>
-              
-            </div>
-            <div>
-            <Link to={"/"}><ul><font color="brown">home</font></ul></Link>
-            </div>
+        <div>
+          <Link to={"/students"}>
+            {" "}
+            <ul>
+              {" "}
+              <font color="brown">students</font>{" "}
+            </ul>{" "}
+          </Link>
+        </div>
+        <div>
+          <Link to={"/"}>
+            <ul>
+              <font color="brown">home</font>
+            </ul>
+          </Link>
+        </div>
       </div>
     );
   }
@@ -69,7 +90,6 @@ const mapDispatch = dispatch => ({
   studentData: studentId => {
     dispatch(dispatchGetStudent(studentId));
   }
- 
 });
 
 export default connect(mapProps, mapDispatch)(SingleStudent);

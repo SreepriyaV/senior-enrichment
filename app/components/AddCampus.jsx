@@ -1,7 +1,3 @@
-//dumb component
-// create form
-//on handle submit , sipacth the changes
-
 import React from "react";
 import { connect } from "react-redux";
 import { dispatchAddCampus } from "../action-creators/campuses";

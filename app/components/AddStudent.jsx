@@ -59,7 +59,6 @@ class AddStudent extends React.Component {
                   className="form-control"
                   required
                 />
-               
               </div>
             </div>
 
@@ -79,13 +78,11 @@ class AddStudent extends React.Component {
                 </div>
               </div>
             </div>
-              
-              <div className="field is-grouped">
+
+            <div className="field is-grouped">
               <div className="control">
-            <button className="button is-link">
-              Submit
-            </button>
-            </div>
+                <button className="button is-link">Submit</button>
+              </div>
             </div>
           </form>
         </div>

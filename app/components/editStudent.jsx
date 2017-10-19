@@ -8,7 +8,7 @@ import { Route, Switch, Link } from "react-router-dom";
 import { dispatchAddStudent } from "../action-creators/students";
 import store from "../store";
 import { dispatchGetCampuses } from "../action-creators/campuses";
-import {dispatchUpdateStudent} from "../action-creators/student";
+import { dispatchUpdateStudent } from "../action-creators/student";
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -61,7 +61,6 @@ class EditStudent extends React.Component {
                   className="form-control"
                   required
                 />
-               
               </div>
             </div>
 
@@ -69,36 +68,41 @@ class EditStudent extends React.Component {
               <label className="label">Campuses</label>
               <div className="control">
                 <div className="select">
-                   
                   <select onChange={this.onSelectSubmit}>
-                     
-
-               {this.props.campuses ?  this.props.campuses.map(campus => {
-                      return (
-                        <option key={campus.id} value={campus.id}>
-                          {campus.name}
-                        </option>
-                      );
-                    }) : null} 
+                    {this.props.campuses ? (
+                      this.props.campuses.map(campus => {
+                        return (
+                          <option key={campus.id} value={campus.id}>
+                            {campus.name}
+                          </option>
+                        );
+                      })
+                    ) : null}
                   </select>
                 </div>
               </div>
             </div>
-              
-              <div className="field is-grouped">
+
+            <div className="field is-grouped">
               <div className="control">
-            <button className="button is-link">
-              Submit
-            </button>
-            </div>
+                <button className="button is-link">Submit</button>
+              </div>
             </div>
           </form>
-           <div>
-            <Link to={`/students/${this.props.match.params.studentId}`}><ul><font color="brown">student</font></ul></Link>
-            </div>
-            <div>
-            <Link to={"/"}><ul><font color="brown">home</font></ul></Link>
-            </div>
+          <div>
+            <Link to={`/students/${this.props.match.params.studentId}`}>
+              <ul>
+                <font color="brown">student</font>
+              </ul>
+            </Link>
+          </div>
+          <div>
+            <Link to={"/"}>
+              <ul>
+                <font color="brown">home</font>
+              </ul>
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -108,12 +112,11 @@ class EditStudent extends React.Component {
     event.preventDefault();
 
     this.props.putStudent(
-        this.props.match.params.studentId,
+      this.props.match.params.studentId,
       event.target.name.value,
       event.target.email.value,
       this.state.id
     );
-    
 
     this.props.history.push("/");
   }
@@ -127,9 +130,9 @@ const mapProps = state => {
 
 const mapDispatch = dispatch => {
   return {
-    putStudent: (studentId,name, email, campusId) => {
+    putStudent: (studentId, name, email, campusId) => {
       const put = { name: name, email: email, campusId: campusId };
-      dispatch(dispatchUpdateStudent(studentId,put));
+      dispatch(dispatchUpdateStudent(studentId, put));
     },
 
     getCampuses: () => {
