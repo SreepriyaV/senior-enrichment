@@ -7,6 +7,7 @@ import { Route, Switch, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import {dispatchUpdateCampus, dispatchGetCampus} from "../action-creators/campus";
+import {dispatchGetCampusStudents} from "../action-creators/students"
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -18,8 +19,9 @@ class EditCampus extends React.Component {
 
 
     componentDidMount() {
-      
+       
     this.props.campusData(Number(this.props.match.params.campusId));
+    this.props.studentsData(Number(this.props.match.params.campusId));
   
   }
 
@@ -57,12 +59,38 @@ class EditCampus extends React.Component {
                 />
               </div>
             </div>
+
+              <div className="students-group">
+              <h1>
+                <b>Students</b>
+              </h1>
+             
+                { this.props.students.map((student,i) => {
+                  return (
+                 
+                  <li key={student.id} >
+                      <Link to={`/campuses/students/${student.id}/edit`} >  {student.name} </Link>
+                    </li>
+                   
+                  );
+                })}
+            
+            </div>
+
             <div className="field is-grouped">
               <div className="control">
                <button className="button is-link">Submit</button>
               </div>
             </div>
           </form>
+
+          <div>
+            <Link to={`/campuses/${this.props.match.params.campusId}`}><ul><font color="brown">campus</font></ul></Link>
+            </div>
+            <div>
+            <Link to={"/"}><ul><font color="brown">home</font></ul></Link>
+            </div>
+
         </div>
       </div>
     );
@@ -81,7 +109,8 @@ class EditCampus extends React.Component {
 /* -----------------    CONTAINER     ------------------ */
 
 const mapProps = state => {
-  return { campus: state.campus
+  return { campus: state.campus,
+    students: state.students
  };
 };
 
@@ -93,6 +122,9 @@ const mapDispatch = dispatch => {
     },
      campusData:(campusId)=>{
     dispatch(dispatchGetCampus(campusId))
+  },
+    studentsData:(campusId)=>{
+    dispatch(dispatchGetCampusStudents(campusId))
   }
   };
 };

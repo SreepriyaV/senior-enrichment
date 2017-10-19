@@ -60,6 +60,11 @@ class students extends Component {
           <h2> <b>Add Student</b> </h2>
           <AddStudent />
         </div>
+
+        <div>
+            <Link to={"/"}><ul>home</ul></Link>
+            </div>
+            
         </div>
       </div>
     );

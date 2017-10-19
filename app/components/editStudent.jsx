@@ -4,6 +4,7 @@
 
 import React from "react";
 import { connect } from "react-redux";
+import { Route, Switch, Link } from "react-router-dom";
 import { dispatchAddStudent } from "../action-creators/students";
 import store from "../store";
 import { dispatchGetCampuses } from "../action-creators/campuses";
@@ -92,6 +93,12 @@ class EditStudent extends React.Component {
             </div>
             </div>
           </form>
+           <div>
+            <Link to={`/students/${this.props.match.params.studentId}`}><ul><font color="brown">student</font></ul></Link>
+            </div>
+            <div>
+            <Link to={"/"}><ul><font color="brown">home</font></ul></Link>
+            </div>
         </div>
       </div>
     );

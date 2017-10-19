@@ -37,22 +37,39 @@ class SingleCampus extends Component {
 
         <h1><b>{campus.name}</b></h1>
         <img src={campus.imageURL} alt="Campus" height="200" width="200"/>
+        <p>Student experience is a top priority at {campus.name}. 
+          We use data from our Learn platform and student feedback to make regular enhancements to every aspect of the program.
+          Admiral programmers once said, “A ship in port is safe, but that is not what ships are built for. 
+          Sail out to sea and do new things.” Now there's nothing between you and an exciting career in technology.
+          </p>
         </div>
          <div className="students-group">
               <h1>
-                <b>Students</b>
+                <b>List of Students part of Our Program</b>
               </h1>
              
-                {this.props.students.map((student) => {
+                {this.props.students.map((student,index) => {
                   return (
-                  <Link to={`/campuses/students/${student.id}/edit`} > 
-                  <li key={student.id} >
+                    <div key={student.id}>
+                  <Link to={`/students/${student.id}`} > 
+                  <li  >
                       {student.name}
                     </li>
                     </Link>
+                    </div>
                   );
                 })}
             
+            </div>
+
+
+          
+              <div >
+            <Link to={"/campuses"}  > <ul> <font color="brown">campuses</font> </ul> </Link>
+              
+            </div>
+            <div>
+            <Link to={"/"}><ul><font color="brown">home</font></ul></Link>
             </div>
 
       </div>

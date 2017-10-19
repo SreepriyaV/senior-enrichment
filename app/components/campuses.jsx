@@ -61,6 +61,9 @@ export default class campuses extends Component {
             </h2>
             <AddCampus />
           </div>
+          <div>
+            <Link to={"/"}><ul>home</ul></Link>
+            </div>
         </div>
       </div>
     );

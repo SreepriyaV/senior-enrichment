@@ -30,9 +30,9 @@ class SingleStudent extends Component {
         <h2><b>Email:</b> {student.email}</h2>
 
         {this.props.student.campus && (
-          <h2>
+       <Link to={`/campuses/${this.props.student.campus.id}`}>   <h2>
             <b>Campus Name: </b>{student.campus.name}
-          </h2>
+          </h2></Link>
         )}
 
         {this.props.student.campus && (
@@ -43,6 +43,14 @@ class SingleStudent extends Component {
             width="200"
           />
         )}
+
+        <div >
+            <Link to={"/students"}  > <ul> <font color="brown">students</font> </ul> </Link>
+              
+            </div>
+            <div>
+            <Link to={"/"}><ul><font color="brown">home</font></ul></Link>
+            </div>
       </div>
     );
   }
