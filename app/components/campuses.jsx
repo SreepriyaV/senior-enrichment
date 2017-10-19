@@ -32,35 +32,35 @@ export default class campuses extends Component {
     return (
       <div className="container is-fluid">
         <div className="notification">
-        <h1>
-          <b><strong> Campuses</strong></b>
-        </h1>
-        <ul>
-          {this.state.campuses.map(campus => {
-            return (
-              <div className="row" key={campus.id}>
-                <li>
-                  <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
-                  <button
-                    onClick={() =>
-                      store.dispatch(dispatchDeleteCampus(campus.id))}
-                  >
-                    X
-                  </button>
-                </li>
-                {/* <Route path={`/campuses/${campus.id}`} render={() => (
-                                    <SingleCampus singleCampus={campus.id}/>)} /> */}
-              </div>
-            );
-          })}
-        </ul>
+          <h1>
+            <b>
+              <strong> Campuses</strong>
+            </b>
+          </h1>
+          <ul>
+            {this.state.campuses.map(campus => {
+              return (
+                <div className="row" key={campus.id}>
+                  <li>
+                    <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
+                    <button
+                      onClick={() =>
+                        store.dispatch(dispatchDeleteCampus(campus.id))}
+                    >
+                      X
+                    </button>
+                  </li>
+                </div>
+              );
+            })}
+          </ul>
 
-        <div>
-          <h2>
-            <b> Add campus </b>
-          </h2>
-          <AddCampus />
-        </div>
+          <div>
+            <h2>
+              <b> Add campus </b>
+            </h2>
+            <AddCampus />
+          </div>
         </div>
       </div>
     );

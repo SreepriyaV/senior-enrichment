@@ -27,7 +27,7 @@ export const dispatchGetStudent=(studentId)=>{
 export const dispatchUpdateStudent=(studentId,student)=>{
     return function thunk(dispatch)
     {
-        axios.put(`api/students/${studentId}`,student)
+        axios.put(`/api/students/${studentId}`,student)
         .then(res=>dispatch(updateStudent(res.data)));
     }
 }

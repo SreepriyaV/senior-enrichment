@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import { Route, Switch, Link } from "react-router-dom";
 import { dispatchGetCampus } from "../action-creators/campus";
 import {dispatchGetCampusStudents} from "../action-creators/students"
 
@@ -32,7 +32,9 @@ class SingleCampus extends Component {
     return (
       <div >
         <div>
-          <h1><b>Campus:</b></h1>
+          <Link to={`/campuses/${campus.id}/edit`}><h3>Edit</h3></Link>
+          <h1><b>Campus:</b></h1> 
+
         <h1><b>{campus.name}</b></h1>
         <img src={campus.imageURL} alt="Campus" height="200" width="200"/>
         </div>

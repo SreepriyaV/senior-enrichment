@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import { Route, Switch, Link } from "react-router-dom";
 import { dispatchGetStudent } from "../action-creators/student";
-// import { dispatchGetCampus } from "../action-creators/campus";
+
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -23,6 +23,7 @@ class SingleStudent extends Component {
     return (
       <div>
         <h1><b><font color="red">Student Details</font></b></h1>
+        <Link to={`/students/${student.id}/edit`}><h3>Edit</h3></Link>
         <h1>
           <b>Name: </b>{student.name}
         </h1>
@@ -60,9 +61,7 @@ const mapDispatch = dispatch => ({
   studentData: studentId => {
     dispatch(dispatchGetStudent(studentId));
   }
-  // campusData: campusId => {
-  //   dispatch(dispatchGetCampus(campusId));
-  // }
+ 
 });
 
 export default connect(mapProps, mapDispatch)(SingleStudent);

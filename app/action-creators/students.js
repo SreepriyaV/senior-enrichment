@@ -22,7 +22,7 @@ export const deleteStudent=(students)=>{
 export const dispatchGetStudents=()=>{
     return function thunk(dispatch)
     {
-        axios.get("api/students/")
+        axios.get("/api/students/")
         .then(res=>dispatch(getStudents(res.data)));
     }
 }
@@ -38,7 +38,7 @@ export const dispatchGetCampusStudents=(campusId)=>{
 export const dispatchAddStudent=(student)=>{
     return function thunk(dispatch)
     {
-        axios.post("api/students/",student)
+        axios.post("/api/students/",student)
         .then(res=>dispatch(addStudent(res.data)));
     }
 }
@@ -47,7 +47,7 @@ export const dispatchDeleteStudent=(studentId)=>{
 
 return function thunk(dispatch)
     {
-        axios.delete(`api/students/${studentId}`)
+        axios.delete(`/api/students/${studentId}`)
         .then(res=>dispatch(deleteStudent(res.data)));
     }
 }

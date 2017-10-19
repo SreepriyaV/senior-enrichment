@@ -22,7 +22,7 @@ export const deleteCampus=(campuses)=>{
 export const dispatchGetCampuses=()=>{
     return function thunk(dispatch)
     {
-        axios.get("api/campuses/")
+        axios.get("/api/campuses/")
         .then(res=>dispatch(getCampuses(res.data)));
     }
 }
@@ -30,7 +30,7 @@ export const dispatchGetCampuses=()=>{
 export const dispatchAddCampus=(campus)=>{
     return function thunk(dispatch)
     {
-        axios.post("api/campuses/",campus)
+        axios.post("/api/campuses/",campus)
         .then(res=>{
             console.log(res.data);
             dispatch(addCampus(res.data))});

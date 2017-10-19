@@ -31,7 +31,8 @@ class students extends Component {
     const { students } = this.props;
 
     return (
-      <div className="container story-container">
+     <div className="container is-fluid">
+       <div className="notification">
         <h1> <b>Students</b> </h1>
         <ul>
           {students.map(student => {
@@ -58,6 +59,7 @@ class students extends Component {
         
           <h2> <b>Add Student</b> </h2>
           <AddStudent />
+        </div>
         </div>
       </div>
     );
