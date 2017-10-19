@@ -6,14 +6,3 @@ import thunkMiddleware from 'redux-thunk'; // https://github.com/gaearon/redux-t
 export default createStore(rootReducer, applyMiddleware(thunkMiddleware, createLogger()))
 
 
-// import { createStore, applyMiddleware } from 'redux';
-// import { createLogger } from 'redux-logger';
-// import thunk from 'redux-thunk';
-// import { composeWithDevTools } from 'redux-devtools-extension';
-
-// import rootReducer from './redux';
-
-// export default createStore(
-//   rootReducer,
-//   composeWithDevTools(applyMiddleware(thunk, createLogger({ collapsed: true })))
-// );
