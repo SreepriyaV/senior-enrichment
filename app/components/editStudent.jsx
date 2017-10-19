@@ -108,7 +108,7 @@ class EditStudent extends React.Component {
     );
     
 
-    this.props.history.push("/students");
+    this.props.history.push("/");
   }
 }
 

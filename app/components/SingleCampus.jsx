@@ -43,11 +43,13 @@ class SingleCampus extends Component {
                 <b>Students</b>
               </h1>
              
-                {this.props.students.map(student => {
+                {this.props.students.map((student) => {
                   return (
-                    <li key={student.id} >
+                  <Link to={`/campuses/students/${student.id}/edit`} > 
+                  <li key={student.id} >
                       {student.name}
                     </li>
+                    </Link>
                   );
                 })}
             
