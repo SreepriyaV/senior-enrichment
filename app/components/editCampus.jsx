@@ -32,13 +32,14 @@ class EditCampus extends React.Component {
       <div className="signin-container">
         <div className="buffer local">
           <form onSubmit={this.onLoginSubmit}>
-            <h1>Current Campus Name : {this.props.campus.name}</h1>
+          
             <div className="field">
               <label className="label">CampusName</label>
               <div className="control">
                 <input
                   name="name"
                   type="name"
+                   placeholder={this.props.campus.name}
                   className="form-control"
                   required
                 />
@@ -51,6 +52,7 @@ class EditCampus extends React.Component {
                 <input
                   name="imageURL"
                   type="imageURL"
+                    placeholder={this.props.campus.imageURL}
                   className="form-control"
                   required
                 />
@@ -109,6 +111,7 @@ class EditCampus extends React.Component {
       event.target.imageURL.value
     );
 
+     alert('A Campus was Edited: ' + event.target.name.value);
     this.props.history.push("/campuses");
   }
 }

@@ -103,6 +103,8 @@ class AddStudent extends React.Component {
       event.target.email.value,
       this.state.id
     );
+
+    alert('A Student was Added: ' + event.target.name.value);
   }
 }
 

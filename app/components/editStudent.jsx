@@ -9,6 +9,7 @@ import { dispatchAddStudent } from "../action-creators/students";
 import store from "../store";
 import { dispatchGetCampuses } from "../action-creators/campuses";
 import { dispatchUpdateStudent } from "../action-creators/student";
+import { dispatchGetStudent } from "../action-creators/student";
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -26,6 +27,7 @@ class EditStudent extends React.Component {
 
   componentDidMount() {
     this.props.getCampuses(dispatchGetCampuses());
+    this.props.studentData(Number(this.props.match.params.studentId));
   }
 
   onSelectSubmit(event) {
@@ -34,6 +36,8 @@ class EditStudent extends React.Component {
 
   render() {
     //console.log("cam", this.props.campuses);
+    const student=this.props.student;
+    console.log("nam",student.name)
     return (
       <div className="signin-container">
         <div className="buffer local">
@@ -44,6 +48,8 @@ class EditStudent extends React.Component {
                 <input
                   name="name"
                   type="name"
+                  placeholder={student.name}
+                
                   className="form-control"
                   required
                 />
@@ -55,9 +61,10 @@ class EditStudent extends React.Component {
               <div className="control has-icons-left has-icons-right">
                 <input
                   className="input is-danger"
-                  placeholder="Email input"
+                  placeholder={student.email}
                   name="email"
                   type="email"
+                
                   className="form-control"
                   required
                 />
@@ -118,6 +125,7 @@ class EditStudent extends React.Component {
       this.state.id
     );
 
+      alert('A Student was Edited: ' + event.target.name.value);
     this.props.history.push("/");
   }
 }
@@ -125,7 +133,8 @@ class EditStudent extends React.Component {
 /* -----------------    CONTAINER     ------------------ */
 
 const mapProps = state => {
-  return { campuses: state.campuses };
+  return { campuses: state.campuses ,
+  student: state.student};
 };
 
 const mapDispatch = dispatch => {
@@ -137,7 +146,12 @@ const mapDispatch = dispatch => {
 
     getCampuses: () => {
       dispatch(dispatchGetCampuses());
-    }
+    },
+
+    studentData: studentId => {
+    dispatch(dispatchGetStudent(studentId));
+  }
+
   };
 };
 
