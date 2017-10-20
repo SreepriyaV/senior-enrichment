@@ -36,8 +36,8 @@ class EditStudent extends React.Component {
 
   render() {
     //console.log("cam", this.props.campuses);
-    const student=this.props.student;
-    console.log("nam",student.name)
+    const student = this.props.student;
+    console.log("nam", student.name);
     return (
       <div className="signin-container">
         <div className="buffer local">
@@ -49,7 +49,6 @@ class EditStudent extends React.Component {
                   name="name"
                   type="name"
                   placeholder={student.name}
-                
                   className="form-control"
                   required
                 />
@@ -64,7 +63,6 @@ class EditStudent extends React.Component {
                   placeholder={student.email}
                   name="email"
                   type="email"
-                
                   className="form-control"
                   required
                 />
@@ -125,7 +123,7 @@ class EditStudent extends React.Component {
       this.state.id
     );
 
-      alert('A Student was Edited: ' + event.target.name.value);
+    alert("A Student was Edited: " + event.target.name.value);
     this.props.history.push("/");
   }
 }
@@ -133,8 +131,10 @@ class EditStudent extends React.Component {
 /* -----------------    CONTAINER     ------------------ */
 
 const mapProps = state => {
-  return { campuses: state.campuses ,
-  student: state.student};
+  return {
+    campuses: state.campuses,
+    student: state.student
+  };
 };
 
 const mapDispatch = dispatch => {
@@ -149,9 +149,8 @@ const mapDispatch = dispatch => {
     },
 
     studentData: studentId => {
-    dispatch(dispatchGetStudent(studentId));
-  }
-
+      dispatch(dispatchGetStudent(studentId));
+    }
   };
 };
 

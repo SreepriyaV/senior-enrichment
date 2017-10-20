@@ -1,24 +1,16 @@
+const GETCAMPUS = "GETCAMPUS";
 
+const UPDATECAMPUS = "UPDATECAMPUS";
 
-const GETCAMPUS= "GETCAMPUS"
+export default function reducer(campus = {}, action) {
+  switch (action.type) {
+    case GETCAMPUS:
+      return action.campus;
 
-const UPDATECAMPUS= "UPDATECAMPUS"
+    case UPDATECAMPUS:
+      return action.campus;
 
-
-
-export default  function reducer(campus={}, action){
- 
-    switch(action.type)
-    {
-        
-        case GETCAMPUS:
-        return   action.campus;
-        
-        case UPDATECAMPUS:
-        return   action.campus;
-     
-        default:
-        return campus;
-    }
-
+    default:
+      return campus;
+  }
 }

@@ -1,4 +1,4 @@
-const {Campus} = require( "../../db/models");
+const { Campus } = require("../../db/models");
 const router = require("express").Router();
 
 router.get("/", (req, res, next) => {
@@ -8,7 +8,6 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:campusId", (req, res, next) => {
-  
   Campus.findById(req.params.campusId)
     .then(campus => res.json(campus))
     .catch(next);
@@ -29,11 +28,11 @@ router.put("/:campusId", (req, res, next) => {
     .catch(next);
 });
 
-router.delete("/:campusId",(req,res,next)=>{
-    Campus.destroy({where:{id: req.params.campusId}})
-    .then(()=>Campus.findAll())
-    .then(campuses=>res.json(campuses))
+router.delete("/:campusId", (req, res, next) => {
+  Campus.destroy({ where: { id: req.params.campusId } })
+    .then(() => Campus.findAll())
+    .then(campuses => res.json(campuses))
     .catch(next);
-})
+});
 
-module.exports=router;
+module.exports = router;

@@ -1,25 +1,16 @@
+const GETSTUDENT = "GETSTUDENT";
 
+const UPDATESTUDENT = "UPDATESTUDENT";
 
-const GETSTUDENT= "GETSTUDENT"
+export default function reducer(student = {}, action) {
+  switch (action.type) {
+    case GETSTUDENT:
+      return action.student;
 
-const UPDATESTUDENT= "UPDATESTUDENT"
+    case UPDATESTUDENT:
+      return action.student;
 
-
-
-
-export default function reducer(student={}, action){
- 
-    switch(action.type)
-    {
-        
-        case GETSTUDENT:
-        return   action.student
-       
-        case UPDATESTUDENT:
-        return  action.student;
-       
-        default:
-        return student;
-    }
-
+    default:
+      return student;
+  }
 }

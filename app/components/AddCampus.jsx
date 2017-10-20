@@ -50,12 +50,11 @@ class AddCampus extends React.Component {
   }
 
   onLoginSubmit(event) {
-    //const { message } = this.props;
     event.preventDefault();
-   
+
     this.props.postCampus(event.target.name.value, event.target.imageURL.value);
     console.log(event.target.name.value);
-     alert('A Campus was Added: ' + event.target.name.value);
+    alert("A Campus was Added: " + event.target.name.value);
   }
 }
 

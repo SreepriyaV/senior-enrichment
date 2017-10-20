@@ -104,7 +104,7 @@ class AddStudent extends React.Component {
       this.state.id
     );
 
-    alert('A Student was Added: ' + event.target.name.value);
+    alert("A Student was Added: " + event.target.name.value);
   }
 }
 

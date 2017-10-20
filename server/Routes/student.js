@@ -1,7 +1,6 @@
 const router = require("express").Router();
-const {Student}  =require("../../db/models");
-const {Campus}  =require("../../db/models");
-
+const { Student } = require("../../db/models");
+const { Campus } = require("../../db/models");
 
 router.get("/", (req, res, next) => {
   Student.findAll()
@@ -10,13 +9,13 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:studentId", (req, res, next) => {
-  Student.findById(req.params.studentId,{ include: [ Campus ] })
+  Student.findById(req.params.studentId, { include: [Campus] })
     .then(student => res.json(student))
     .catch(next);
 });
 
 router.get("/campus/:campusId", (req, res, next) => {
-  Student.findAll({where: {campusId:req.params.campusId}})
+  Student.findAll({ where: { campusId: req.params.campusId } })
     .then(students => res.json(students))
     .catch(next);
 });
@@ -36,10 +35,10 @@ router.put("/:studentId", (req, res, next) => {
     .catch(next);
 });
 
-router.delete("/:studentId",(req,res,next)=>{
-    Student.destroy({where:{id: req.params.studentId}})
-    .then(()=>Student.findAll())
-    .then((students)=>res.json(students))
+router.delete("/:studentId", (req, res, next) => {
+  Student.destroy({ where: { id: req.params.studentId } })
+    .then(() => Student.findAll())
+    .then(students => res.json(students))
     .catch(next);
-})
-  module.exports=router;
+});
+module.exports = router;
